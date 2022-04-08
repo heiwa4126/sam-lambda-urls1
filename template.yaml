@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-lambda-urls
+
+  Sample SAM Template for sam-lambda-urls
+
+Globals:
+  Function:
+    Timeout: 3
+    Runtime: python3.8
+    Architectures:
+      - x86_64
+  Api:
+    OpenApiVersion: 3.0.3
+
+Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: app.lambda_handler
+
+  HelloWorldFunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn: !Ref HelloWorldFunction
+      AuthType: NONE
+      # Cors:
+      #   AllowOrigins:
+      #     - https://www.example.com
+
+  HelloWorldFunctionLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunctionUrl
+      FunctionName: !Ref HelloWorldFunction
+      Principal: "*"
+      FunctionUrlAuthType: NONE
+
+  HelloWorldFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: HelloWorldFunction
+    Properties:
+      RetentionInDays: 7
+      LogGroupName: !Sub "/aws/lambda/${HelloWorldFunction}"
+
+Outputs:
+  HelloWorldFunctionUrl:
+    Description: "Lambda Function URL for World function"
+    Value: !GetAtt HelloWorldFunctionUrl.FunctionUrl
