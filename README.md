@@ -3,7 +3,7 @@
 [AWS Lambda Function URLs](https://aws.amazon.com/jp/blogs/aws/announcing-aws-lambda-function-urls-built-in-https-endpoints-for-single-function-microservices/)
 の最初のサンプル。
 
-とりあえず認証なし、CORSなしで。
+とりあえず認証なし、CORSなしで。Lambda本体はpython 3.8
 
 
 # デプロイ
@@ -33,6 +33,7 @@ $ curl https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.lambda-url.ap-northeast-1.on.aws
 sam delete --no-prompts
 ```
 で消えます。
+いま認証なしなんで、動作確認したらさっさと消したほうがいいと思います。
 
 
 # メモ
