@@ -40,3 +40,12 @@ sam delete --no-prompts
 
 まだ AWS::Lambda::Url リソースのドキュメントがないけど、
 URLのアトリビュートは .FunctionUrl でした。
+
+## 追記(2022-04-11)
+
+ドキュメント出た。
+[AWS::Lambda::Url - AWS CloudFormation](https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-url.html)
+
+AuthTypeについては
+[Security and auth model for Lambda function URLs - AWS Lambda](https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/urls-auth.html)
+
