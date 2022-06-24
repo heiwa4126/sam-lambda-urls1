@@ -49,3 +49,13 @@ URLのアトリビュートは .FunctionUrl でした。
 AuthTypeについては
 [Security and auth model for Lambda function URLs - AWS Lambda](https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/urls-auth.html)
 
+# IAM認証追加してみた
+
+AWS_IAMブランチで。
+
+[awscli](https://github.com/okigan/awscurl)で、
+```bash
+awscurl --service lambda --region ap-northeast-1 "$TheURL"
+```
+
+みたいにしてください。

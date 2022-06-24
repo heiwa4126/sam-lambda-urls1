@@ -8,9 +8,10 @@ Description: >
 Globals:
   Function:
     Timeout: 3
-    Runtime: python3.8
+    Runtime: python3.9
     Architectures:
-      - x86_64
+      # - x86_64
+      - arm64
   Api:
     OpenApiVersion: 3.0.3
 
@@ -25,7 +26,8 @@ Resources:
     Type: AWS::Lambda::Url
     Properties:
       TargetFunctionArn: !Ref HelloWorldFunction
-      AuthType: NONE
+      # AuthType: NONE
+      AuthType: AWS_IAM
       # Cors:
       #   AllowOrigins:
       #     - https://www.example.com
@@ -35,8 +37,10 @@ Resources:
     Properties:
       Action: lambda:InvokeFunctionUrl
       FunctionName: !Ref HelloWorldFunction
-      Principal: "*"
-      FunctionUrlAuthType: NONE
+      # Principal: "*"
+      # FunctionUrlAuthType: NONE
+      Principal: !Ref AWS::AccountId
+      FunctionUrlAuthType: AWS_IAM
 
   HelloWorldFunctionLogGroup:
     Type: AWS::Logs::LogGroup
